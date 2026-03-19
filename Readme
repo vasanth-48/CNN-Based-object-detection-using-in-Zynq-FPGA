@@ -1,0 +1,213 @@
+
+# 🚀 FPGA Accelerated CNN Inference
+
+## ResNet-14 on CIFAR-10 using Tensil
+
+## 📌 Project Overview
+
+This project implements a **hardware-accelerated Convolutional Neural Network inference pipeline** by deploying a **ResNet-14 model trained on CIFAR-10 dataset onto ZYNQ FPGA**.
+
+The workflow integrates:
+
+* Deep Learning (PyTorch)
+* Model compilation (Tensil CLI)
+* Hardware simulation (Verilog RTL)
+* FPGA execution
+* Output visualization from hardware results
+
+This project demonstrates **AI + RTL + FPGA system design workflow**.
+
+---
+
+## 🧠 Model Details
+
+* Model: **ResNet-14**
+* Dataset: **CIFAR-10**
+* Framework: **PyTorch**
+* Input Size: **32×32 RGB**
+* Output: **10 class probabilities**
+
+Classes:
+
+```
+airplane, automobile, bird, cat, deer,
+dog, frog, horse, ship, truck
+```
+
+---
+
+## 🛠️ Tools & Technologies Used
+
+### 🔹 Deep Learning
+
+* PyTorch
+* Torchvision
+* NumPy
+* PIL
+
+### 🔹 Hardware Acceleration
+
+* **Tensil CLI**
+* FIRRTL
+* Verilog RTL
+* BRAM based CNN accelerator
+
+### 🔹 Deployment Environment
+
+* **Docker**
+* **WSL (Windows Subsystem for Linux)**
+
+### 🔹 Target Hardware
+
+* **PYNQ-Z1 FPGA**
+
+---
+
+## ⚙️ System Flow
+
+```
+Train ResNet-14 (PyTorch)
+        ↓
+Export to ONNX
+        ↓
+Compile using Tensil CLI
+        ↓
+Generate RTL + Program Files
+        ↓
+Simulate / Deploy on FPGA
+        ↓
+Capture HEX Output
+        ↓
+Visualize Output Image
+```
+
+---
+
+## 📂 Project Structure
+
+```
+├── data/                         # CIFAR-10 dataset
+├── cifar10_images_subset/        # Sample images
+├── resnet14_cifar10.pth          # Trained PyTorch model
+├── resnet14_cifar10.onnx         # ONNX model
+├── cnn_convolver_output.hex      # FPGA output
+├── fpga_output_image_rgb.png     # Visualized output
+├── top_pynqz1.v                  # Top level RTL
+├── architecture_params.h         # Accelerator config
+├── bram_*.v                      # Memory modules
+├── *.tmodel / *.tprog / *.tdata  # Tensil compiled artifacts
+├── tensilrtl.py                  # HEX visualization script
+├── train.py                      # Inference demo
+```
+
+---
+
+## 🏋️ Model Training & Inference
+
+### Install dependencies
+
+```bash
+pip install torch torchvision numpy pillow
+```
+
+### Run inference
+
+```bash
+python train.py
+```
+
+This will:
+
+* Load trained ResNet-14
+* Run prediction on CIFAR-10 samples
+* Show logits & probabilities
+
+---
+
+## 🔬 Hardware Compilation (Tensil CLI)
+
+### Run inside Docker / WSL
+
+Example flow:
+
+```bash
+tensil compile resnet14_cifar10.onnx
+```
+
+Generates:
+
+* `.tmodel`
+* `.tprog`
+* `.tdata`
+* FIRRTL & RTL
+
+These are used for FPGA deployment.
+
+---
+
+## 🧩 FPGA Output Visualization
+
+After FPGA execution:
+
+```
+cnn_convolver_output.hex
+```
+
+Convert to image:
+
+```bash
+python tensilrtl.py
+```
+
+This script:
+
+* Detects RGB / feature map
+* Normalizes FPGA output
+* Saves visualization image
+
+---
+
+## 🖥️ Hardware Architecture
+
+* CNN accelerator implemented using **Verilog**
+* Uses **BRAM for feature storage**
+* FIRRTL used as intermediate hardware IR
+* Optimized for **edge AI inference**
+
+---
+
+## 🎯 Key Learning Outcomes
+
+✔ AI Model Deployment on FPGA
+✔ Hardware-Software Co-Design
+✔ CNN Accelerator Architecture
+✔ ONNX → RTL flow
+✔ FPGA memory mapping
+✔ Feature map visualization
+✔ Docker + WSL based hardware toolchain
+
+---
+
+## 👨‍💻 Author
+
+**Vasanth S**
+
+RTL | FPGA | AI Hardware Acceleration
+
+---
+
+## 📜 License
+
+Academic / Research Use
+
+---
+
+If you want, I can next give you:
+
+✅ Resume description (very powerful)
+✅ GitHub project description (1-line + tags)
+✅ Architecture diagram image
+✅ Tensil flow explanation for interview
+✅ How to explain this project in interviews
+
+Just tell 🙂
